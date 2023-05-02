@@ -69,6 +69,8 @@
 
       thisProduct.initOrderForm();
 
+      thisProduct.initAmountWidget();
+
       thisProduct.processOrder();
     }
 
@@ -96,6 +98,8 @@
     getElements() {
       const thisProduct = this;
 
+      thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
+      //console.log(thisProduct.amountWidgetElem);
       thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
       //console.log(thisProduct.imageWrapper)
       thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
@@ -108,6 +112,18 @@
       //console.log(thisProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
       //console.log(thisProduct.priceElem);
+    }
+
+    initAmountWidget() {
+      const thisProduct = this;
+
+      thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+
+      thisProduct.amountWidgetElem.addEventListener('updated', function(){
+        thisProduct.processOrder();
+      });
+
+
     }
 
     initAccordion() {
@@ -220,7 +236,7 @@
           }
           const optionImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
           //console.log(optionImage);
-          
+
           if (optionImage) {
 
             if (formData[paramId] && formData[paramId].includes(optionId)) {
@@ -232,10 +248,74 @@
           }
         }
       }
-
+      price *= thisProduct.amountWidget.value;
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
 
+    }
+  }
+
+  class AmountWidget {
+    constructor(element) {
+      const thisWidget = this;
+
+      console.log('AmountWidget:', thisWidget);
+      console.log('constructor arguments:', element);
+
+      thisWidget.getElements(element);
+
+      thisWidget.setValue(settings.amountWidget.defaultValue);
+
+      thisWidget.initActions();
+    }
+
+    getElements(element) {
+      const thisWidget = this;
+
+      thisWidget.element = element;
+      thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
+      thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
+      thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
+
+    }
+
+    setValue(value) {
+      const thisWidget = this;
+
+      const newValue = parseInt(value);
+
+      if (thisWidget.value !== newValue && !isNaN(newValue) && newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax) {
+        thisWidget.value = newValue;
+      }
+      thisWidget.input.value = thisWidget.value;
+      thisWidget.announce();
+
+      console.log(newValue);
+    }
+
+    initActions() {
+      const thisWidget = this;
+
+      thisWidget.input.addEventListener('change', function () {
+        thisWidget.setValue(thisWidget.input.value);
+      });
+
+      thisWidget.linkDecrease.addEventListener('click', function(event){
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value - 1);
+      });
+
+      thisWidget.linkIncrease.addEventListener('click', function (event) {
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value + 1);
+      });
+    }
+
+    announce (){
+      const thisWidget = this;
+
+      const event = new Event('updated');
+      thisWidget.element.dispatchEvent(event);
     }
   }
 
@@ -263,7 +343,7 @@
       //console.log('*** App starting ***');
       //console.log('thisApp:', thisApp);
       //console.log('classNames:', classNames);
-      console.log('settings:', settings);
+      //console.log('settings:', settings);
       //console.log('templates:', templates);
 
       thisApp.initData();
