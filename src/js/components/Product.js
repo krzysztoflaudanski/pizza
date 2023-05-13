@@ -134,6 +134,8 @@ class Product {
     processOrder() {
       const thisProduct = this;
 
+      //!!!!!!!!!!
+
       // covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
 
       const formData = utils.serializeFormToObject(thisProduct.form);
