@@ -107,8 +107,6 @@ const app = {
 
     thisApp.initPages();
 
-    //thisApp.initMenu();
-
     thisApp.initCart();
 
     thisApp.initBooking();
@@ -132,8 +130,8 @@ const app = {
   initBooking: function (){
     const thisApp = this;
 
-    const bookingElem = document.querySelector(select.containerOf.booking);
-    thisApp.booking = new Booking(bookingElem);
+    thisApp.bookingElem = document.querySelector(select.containerOf.booking);
+    thisApp.booking = new Booking(thisApp.bookingElem);
   }
 
 };
