@@ -263,5 +263,17 @@
          ]
       }
    ],
-   "bookings": []
+   "bookings": [
+      {
+         "id": 1,
+         "date": "2025-01-01",
+         "hour": "15:00",
+         "table": 1,
+         "duration": 3,
+         "ppl": 4,
+         "starters": [
+            "water"
+         ]
+      }
+   ]
 }
