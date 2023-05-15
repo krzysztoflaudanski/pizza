@@ -9,6 +9,8 @@ class Booking {
 
         const thisBooking = this;
 
+        thisBooking.reservation = '';
+
         thisBooking.render(element);
 
         thisBooking.initWidgets();
@@ -73,9 +75,9 @@ class Booking {
                 ]);
             })
             .then(function ([bookings, eventsCurrent, eventsRepeat]) {
-                console.log(bookings);
-                console.log(eventsCurrent);
-                console.log(eventsRepeat);
+                //console.log(bookings);
+                //console.log(eventsCurrent);
+                //console.log(eventsRepeat);
                 thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
             });
     }
@@ -106,7 +108,7 @@ class Booking {
         }
 
 
-        console.log(thisBooking.booked)
+        //console.log(thisBooking.booked)
     }
 
     makeBooked(date, hour, duration, table) {
@@ -155,7 +157,7 @@ class Booking {
             if (
                 !allAvailable
                 &&
-                thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId) 
+                thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId)
             ) {
                 table.classList.add(classNames.booking.tableBooked);
             } else {
@@ -163,7 +165,6 @@ class Booking {
             }
         }
     }
-
 
     render(element) {
 
@@ -187,6 +188,9 @@ class Booking {
         thisBooking.dom.hourPicker = document.querySelector(select.widgets.hourPicker.wrapper);
 
         thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
+        //console.log(thisBooking.dom.tables)
+        thisBooking.dom.floor = document.querySelector(select.booking.floor);
+        //console.log(thisBooking.dom.floor);
 
     }
 
@@ -195,24 +199,72 @@ class Booking {
 
         thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
 
-        thisBooking.dom.peopleAmount.addEventListener('updated', function () { });
+        thisBooking.dom.peopleAmount.addEventListener('updated', function () {});
 
         thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount);
 
-        thisBooking.dom.hoursAmount.addEventListener('updated', function () { });
+        thisBooking.dom.hoursAmount.addEventListener('updated', function () {});
 
         thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
 
-        //thisBooking.dom.datePicker.addEventListener('updated', function(){});
+        thisBooking.dom.datePicker.addEventListener('updated', function(){thisBooking.resetTables()});
 
         thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
 
-        //thisBooking.dom.hourPicker.addEventListener('updated', function(){});
+        thisBooking.dom.hourPicker.addEventListener('updated', function () {thisBooking.resetTables()});
 
         thisBooking.dom.wrapper.addEventListener('updated', function () {
-            thisBooking.updateDOM();
-         });
-    }
-}
 
+            thisBooking.updateDOM();
+
+        });
+
+        thisBooking.dom.floor.addEventListener('click', function (event) {
+            event.preventDefault()
+            thisBooking.selected = event.target;
+            thisBooking.initTables();
+        })
+    }
+
+    initTables() {
+        const thisBooking = this;
+
+        if (thisBooking.selected.classList.contains(classNames.booking.table)) {
+
+            const id = thisBooking.selected.getAttribute('data-table');
+
+            if (thisBooking.selected.classList.contains(classNames.booking.tableBooked)) {
+                alert('This table is already taken. Select another one.');
+            } else {
+                if (thisBooking.selected.classList.contains(classNames.booking.selected)) {
+
+                    thisBooking.selected.classList.remove(classNames.booking.selected);
+
+                    thisBooking.reservation = '';
+                }
+                else {
+                    thisBooking.resetTables();
+
+                    thisBooking.selected.classList.add(classNames.booking.selected);
+
+                    thisBooking.reservation = id;
+                }
+            }
+        } else  
+            thisBooking.resetTables();
+            
+        //console.log(thisBooking.reservation);
+    }
+
+    resetTables() {
+        const thisBooking = this;
+        for (let item of thisBooking.dom.tables) {
+
+            item.classList.remove(classNames.booking.selected);
+        }
+        thisBooking.reservation = '';
+        //console.log(thisBooking.reservation);
+    } 
+
+}
 export default Booking;
