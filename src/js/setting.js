@@ -31,7 +31,7 @@ export const select = {
     },
     datePicker: {
       wrapper: '.date-picker',
-      input: `input[name="date"]`,
+      input: 'input[name="date"]',
     },
     hourPicker: {
       wrapper: '.hour-picker',
@@ -44,7 +44,13 @@ export const select = {
     hoursAmount: '.hours-amount',
     tables: '.floor-plan .table',
     floor: '.floor-plan',
-    selected: '.selected' 
+    selected: '.selected', 
+    form: '.booking-form [type="submit"]',
+    duration: '.hours-amount input',
+    people: '.people-amount input',
+    phone: '[name="phone"]',
+    address: '[name="address"]',
+    starters: 	'.booking-options',
   },
   nav: {
     links: '.main-nav a',

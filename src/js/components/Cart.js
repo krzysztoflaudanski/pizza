@@ -131,7 +131,7 @@ class Cart {
           deliveryFee: thisCart.dom.deliveryFee.value,
           products: []
         };
-      
+        
       for(let prod of thisCart.products) {
         payload.products.push(prod.getData());
       }
