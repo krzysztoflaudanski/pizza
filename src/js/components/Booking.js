@@ -244,7 +244,7 @@ class Booking {
 
         thisBooking.dom.form.addEventListener('click', function (event) {
             event.preventDefault();
-            thisBooking.sendOrder();
+            thisBooking.sendBooking();
         })
 
         thisBooking.dom.starters.addEventListener('change', function (event) {
@@ -307,8 +307,10 @@ class Booking {
         thisBooking.water = thisBooking.dom.water
     }
 
-    sendOrder() {
+    sendBooking() {
         const thisBooking = this;
+
+        const url = settings.db.url + '/' + settings.db.booking;
 
         let duration = thisBooking.dom.duration.value
         duration = parseInt(duration);
@@ -327,15 +329,32 @@ class Booking {
             address: thisBooking.dom.address.value,
         }
         console.log(payload)
-        console.log(thisBooking.dom.date.value)
-        console.log(thisBooking.dom.hour.innerHTML)
-        console.log(thisBooking.reservation)
-        console.log(duration)
-        console.log(people)
-        console.log(thisBooking.starters)
-        console.log(thisBooking.dom.phone.value)
-        console.log(thisBooking.dom.address.value)
+        //console.log(thisBooking.dom.date.value)
+        //console.log(thisBooking.dom.hour.innerHTML)
+        //console.log(thisBooking.reservation)
         //console.log(duration)
+        //console.log(people)
+        //console.log(thisBooking.starters)
+        //console.log(thisBooking.dom.phone.value)
+        //console.log(thisBooking.dom.address.value)
+
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+        };
+
+        fetch(url, options)
+          .then(function (response) {
+            return response.json();
+        })
+            .then(function (parsedResponse) {
+                thisBooking.makeBooked(parsedResponse.date, parsedResponse.hour, parsedResponse.duration, parsedResponse.table);
+            })
+
+        console.log(thisBooking.booked)
     }
 }
 export default Booking;
