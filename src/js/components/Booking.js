@@ -328,15 +328,7 @@ class Booking {
             phone: thisBooking.dom.phone.value,
             address: thisBooking.dom.address.value,
         }
-        console.log(payload)
-        //console.log(thisBooking.dom.date.value)
-        //console.log(thisBooking.dom.hour.innerHTML)
-        //console.log(thisBooking.reservation)
-        //console.log(duration)
-        //console.log(people)
-        //console.log(thisBooking.starters)
-        //console.log(thisBooking.dom.phone.value)
-        //console.log(thisBooking.dom.address.value)
+        //console.log(payload)
 
         const options = {
             method: 'POST',
@@ -354,7 +346,7 @@ class Booking {
                 thisBooking.makeBooked(parsedResponse.date, parsedResponse.hour, parsedResponse.duration, parsedResponse.table);
             })
 
-        console.log(thisBooking.booked)
+        //console.log(thisBooking.booked)
     }
 }
 export default Booking;
