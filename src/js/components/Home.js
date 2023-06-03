@@ -1,4 +1,4 @@
-import {select, classNames, templates} from './../setting.js';
+import {templates} from './../setting.js';
 import utils from './../utils.js';
 
 class Home {
@@ -6,7 +6,8 @@ class Home {
         const thisHome = this;
 
         thisHome.render(element);
-
+       // const navLink = document.querySelector('.home-nav');
+       // console.log(navLink);
     }
 
 render(element) {

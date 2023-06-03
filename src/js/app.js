@@ -4,6 +4,8 @@ import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
 import Home from './components/Home.js';
 
+
+
 const app = {
   initPages: function () {
     const thisApp = this;
@@ -106,13 +108,13 @@ const app = {
 
     thisApp.initData();
 
-    thisApp.initPages();
-
     thisApp.initCart();
 
     thisApp.initBooking();
 
     thisApp.initHome();
+
+    thisApp.initPages();
 
   },
 

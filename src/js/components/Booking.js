@@ -18,6 +18,7 @@ class Booking {
         thisBooking.initWidgets();
 
         thisBooking.getData();
+
     }
 
     getData() {
@@ -344,6 +345,7 @@ class Booking {
         })
             .then(function (parsedResponse) {
                 thisBooking.makeBooked(parsedResponse.date, parsedResponse.hour, parsedResponse.duration, parsedResponse.table);
+                thisBooking.updateDOM();
             })
 
         //console.log(thisBooking.booked)
