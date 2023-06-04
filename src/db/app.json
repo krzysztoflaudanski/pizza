@@ -1,4 +1,4 @@
-{     
+{
    "products": [
       {
          "id": "cake",
@@ -274,6 +274,18 @@
          "starters": [
             "water"
          ]
+      }
+   ],
+   "home": [
+      {
+            "gallery": [
+            "<img src=\"images/home/pizza-5.jpg\">",
+            "<img src=\"images/home/pizza-5.jpg\">",
+            "<img src=\"images/home/pizza-6.jpg\">",
+            "<img src=\"images/home/pizza-7.jpg\">",
+            "<img src=\"images/home/pizza-8.jpg\">",
+            "<img src=\"images/home/pizza-9.jpg\">"
+      ]
       }
    ]
 }

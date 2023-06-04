@@ -84,7 +84,6 @@ const app = {
     thisApp.data = {};
 
     const url = settings.db.url + '/' + settings.db.products;
-
     fetch(url)
       .then(function (rawResponse) {
         return rawResponse.json();
@@ -92,7 +91,7 @@ const app = {
       .then(function (parsedResponse) {
 
         thisApp.data.products = parsedResponse;
-
+        //console.log(thisApp.data.products);
         app.initMenu();
 
       })
@@ -143,8 +142,8 @@ const app = {
     const thisApp = this;
 
     thisApp.homeElem = document.querySelector(select.containerOf.home);
-    thisApp.home = new Home(thisApp.homeElem);
-  }
+    thisApp.home = new Home(thisApp.homeElem, thisApp.dataHome);
+  },
 
 };
 

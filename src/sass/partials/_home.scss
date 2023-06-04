@@ -6,110 +6,165 @@
     border-radius: $radius;
 
 
-.home-nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
+    .home-nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
 
-.home-options {
-    position: relative;
-    flex: 0 50%;
-    text-align: center;
-    height: 100px;
-    padding: 0 5px;
-}
-
-.options-gallery {
-    img {
-        width: 100%;
+    .home-options {
+        position: relative;
+        flex: 0 50%;
+        text-align: center;
         height: 100px;
-        object-fit: cover;
+        padding: 0 5px;
     }
-}
 
-.options-title {
-    position: absolute;
-    display: block;
-    top: 75%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-
-    h4 {
-        opacity: 0;
-        color: $color-light;
-    }
-}
-
-.home-options:hover {
-    .options-title {
-        top: 50%;
-        transition: 2s;
-
-        h4 {
-            opacity: 9;
+    .options-gallery {
+        img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
         }
     }
-}
 
-h2 {
-    color: $color-light;
-}
+    .options-title {
+        position: absolute;
+        display: block;
+        top: 75%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
 
-.opening {
-    position: relative;
-    background: $color-main;
-    color: $color-light;
-    height: 100px;
-    margin: 0 5px;
+        h4 {
+            opacity: 0;
+            color: $color-light;
+        }
+    }
+
+    .home-options:hover {
+        .options-title {
+            top: 50%;
+            transition: 2s;
+
+            h4 {
+                opacity: 9;
+            }
+        }
+    }
 
     h2 {
-        margin: auto;
+        color: $color-light;
     }
-}
 
-.opening-title {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
+    .opening {
+        position: relative;
+        background: $color-main;
+        color: $color-light;
+        height: 100px;
+        margin: 0 5px;
 
-.carousel {
-    background: #EEE;
-    margin: 75px 5px;
-  }
-  
-  .carousel-cell {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 100%;
-    height: 200px;
-    //margin-right: 10px;
-    background: $color-light;
-    border-radius: 5px;
-   // counter-increment: gallery-cell;
-  }
-  .carousel-picture {
-    flex: 1;
-    height: 200px;
-    width: 200px;
-    img {
+        h2 {
+            margin: auto;
+        }
+    }
+
+    .opening-title {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .carousel {
+        margin: 75px 5px;
+        background: $color-light;
+    }
+
+    .carousel-cell {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+        height: 190px;
+        border-radius: 5px;
+        margin-bottom: 30px;
+    }
+
+    .carousel-picture {
+        flex: 1;
+        height: 190px;
+        width: 190px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .carousel-text {
+        flex: 2;
+        width: 100%;
+        padding: 0 0 10px 30px;
+    }
+
+    .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .gallery-container {
+        flex: 0 0 33,333%;
+        margin: 5px;
+        position: relative;
+    }
+
+    .gallery-image {
+        width: 190px;
+        height: 190px;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .gallery-icons {
+        position: absolute;
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        background-color: rgba(2, 48, 71, .6);
+        opacity: 0;
+        ul {
+            height: 190px;
+            margin: 0;
+            padding: 82px 0 0;
+        }
+        li {
+            list-style-type: none;
+            display: inline;
+            color: $color-light;
+            font-size: 0;
+        }
     }
-  }
-  .carousel-text {
-    flex: 2;
-    width: 100%;
-    padding: 0 0 10px 30px;
-    span {
-        font-style: oblique;
+
+    .gallery-container:hover {
+        .gallery-icons {
+            opacity: 1;
+            li {
+                font-size: 20px;
+                color: $color-main;
+                cursor: pointer;
+                transition: 3s;
+            }
+        }
     }
-  }
 }

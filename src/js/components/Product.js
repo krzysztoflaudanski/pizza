@@ -9,7 +9,9 @@ class Product {
       const thisProduct = this;
 
       thisProduct.id = id;
+      //console.log(id)
       thisProduct.data = data;
+      //console.log(data)
 
       thisProduct.renderInMenu();
 
@@ -139,7 +141,6 @@ class Product {
       // covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
 
       const formData = utils.serializeFormToObject(thisProduct.form);
-      //console.log('formData', formData);
 
       // set price to default price
 
@@ -246,6 +247,7 @@ class Product {
       const thisProduct = this;
 
       const formData = utils.serializeFormToObject(thisProduct.form);
+      
       const params = {};
 
       // for very category (param)

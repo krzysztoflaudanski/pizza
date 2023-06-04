@@ -1,32 +1,63 @@
-import {templates} from './../setting.js';
+import { templates, settings } from './../setting.js';
 import utils from './../utils.js';
 
 class Home {
     constructor(element) {
         const thisHome = this;
+        
+        thisHome.initData()
 
-        thisHome.render(element);
-       // const navLink = document.querySelector('.home-nav');
-       // console.log(navLink);
+        thisHome.render(element)
+           
+    }
+    
+    initData() {
+        const thisHome = this;
+
+        thisHome.data = {};
+
+        const url = settings.db.url + '/' + settings.db.home;
+
+        fetch(url)
+            .then(function (rawResponse) {
+                return rawResponse.json();
+            })
+            .then(function (parsedResponse) {
+
+                thisHome.data = parsedResponse
+                //console.log(thisHome.data)
+                thisHome.initGallery()
+         })  
     }
 
-render(element) {
-    const thisHome = this;
+    render(element) {
 
-     thisHome.dom = {};
+        const thisHome = this;
 
-     thisHome.dom.wrapper = element;
+        thisHome.dom = {};
 
-    const generatedHTML = templates.home();
+        thisHome.dom.wrapper = element;
 
-    const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+        const generatedHTML = templates.home();
 
-    thisHome.dom.wrapper.appendChild(generatedDOM);
+        const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+
+        thisHome.dom.wrapper.appendChild(generatedDOM);
+    }
+
+    initGallery() {
+        const thisHome = this;
+        
+        console.log(thisHome.data)
+        
+        thisHome.data.gallery = thisHome.data[0];
+
+        console.log(thisHome.data.gallery)
+ 
+    }
+
 }
 
 
-
-
-}
 
 export default Home; 
