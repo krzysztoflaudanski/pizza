@@ -95,9 +95,6 @@ class Booking {
             }
             thisBooking.updateDOM();
         }
-
-
-        //console.log(thisBooking.booked)
     }
 
     makeBooked(date, hour, duration, table) {
