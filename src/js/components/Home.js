@@ -1,14 +1,14 @@
-import { templates} from './../setting.js';
+import { templates } from './../setting.js';
 import utils from './../utils.js';
 
 class Home {
     constructor(element) {
         const thisHome = this;
-        
+
         thisHome.render(element)
-           
+
     }
-  
+
     render(element) {
 
         const thisHome = this;

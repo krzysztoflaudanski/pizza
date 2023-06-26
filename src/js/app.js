@@ -12,8 +12,6 @@ const app = {
 
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
-    console.log(thisApp.pages)
-    console.log(thisApp.navLinks)
 
     const idFromHash = window.location.hash.replace('#/', '')
 
@@ -73,7 +71,6 @@ const app = {
 
   initMenu: function () {
     const thisApp = this;
-    //console.log('thisApp.data:', thisApp.data)
 
     for (let productData in thisApp.data.products) {
       new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
@@ -93,7 +90,7 @@ const app = {
       .then(function (parsedResponse) {
 
         thisApp.data.products = parsedResponse;
-        //console.log(thisApp.data.products);
+
         app.initMenu();
 
       })
@@ -101,11 +98,6 @@ const app = {
 
   init: function () {
     const thisApp = this;
-    //console.log('*** App starting ***');
-    //console.log('thisApp:', thisApp);
-    //console.log('classNames:', classNames);
-    //console.log('settings:', settings);
-    //console.log('templates:', templates);
 
     thisApp.initData();
 
@@ -133,14 +125,14 @@ const app = {
     });
   },
 
-  initBooking: function (){
+  initBooking: function () {
     const thisApp = this;
 
     thisApp.bookingElem = document.querySelector(select.containerOf.booking);
     thisApp.booking = new Booking(thisApp.bookingElem);
   },
 
-  initHome: function (){
+  initHome: function () {
     const thisApp = this;
 
     thisApp.homeElem = document.querySelector(select.containerOf.home);

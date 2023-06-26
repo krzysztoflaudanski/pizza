@@ -44,23 +44,11 @@ class Booking {
             ],
         };
 
-        //console.log('getData params', params);
-
         const urls = {
             booking: settings.db.url + '/' + settings.db.booking + '?' + params.booking.join('&'),
             eventsCurrent: settings.db.url + '/' + settings.db.event + '?' + params.eventsCurrent.join('&'),
             eventsRepeat: settings.db.url + '/' + settings.db.event + '?' + params.eventsRepeat.join('&'),
         };
-
-        //console.log('getData urls', urls);
-
-        /* fetch(urls.booking)
-             .then(function (bookingsResponse) {
-                 return bookingsResponse.json();
-             })
-             .then(function (bookings) {
-                 console.log(bookings);
-             });*/
 
         Promise.all([
             fetch(urls.booking),
@@ -78,9 +66,7 @@ class Booking {
                 ]);
             })
             .then(function ([bookings, eventsCurrent, eventsRepeat]) {
-                //console.log(bookings);
-                //console.log(eventsCurrent);
-                //console.log(eventsRepeat);
+
                 thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
             });
     }
@@ -130,8 +116,6 @@ class Booking {
             }
 
             thisBooking.booked[date][hourBlock].push(table);
-
-            //console.log(hourBlock);
         }
     }
 
@@ -167,6 +151,7 @@ class Booking {
                 table.classList.remove(classNames.booking.tableBooked);
             }
         }
+
     }
 
     render(element) {
@@ -274,6 +259,7 @@ class Booking {
 
             if (thisBooking.selected.classList.contains(classNames.booking.tableBooked)) {
                 alert('This table is already taken. Select another one.');
+
             } else {
                 if (thisBooking.selected.classList.contains(classNames.booking.selected)) {
 
@@ -300,7 +286,7 @@ class Booking {
             item.classList.remove(classNames.booking.selected);
         }
         thisBooking.reservation = null;
-        //console.log(thisBooking.reservation);
+
     }
 
     initStarters() {
@@ -329,7 +315,10 @@ class Booking {
             phone: thisBooking.dom.phone.value,
             address: thisBooking.dom.address.value,
         }
-        //console.log(payload)
+
+        if (payload.table == null) {
+            return
+        }
 
         const options = {
             method: 'POST',
@@ -340,15 +329,14 @@ class Booking {
         };
 
         fetch(url, options)
-          .then(function (response) {
-            return response.json();
-        })
+            .then(function (response) {
+                return response.json();
+            })
             .then(function (parsedResponse) {
                 thisBooking.makeBooked(parsedResponse.date, parsedResponse.hour, parsedResponse.duration, parsedResponse.table);
                 thisBooking.updateDOM();
+                thisBooking.resetTables();
             })
-
-        //console.log(thisBooking.booked)
     }
 }
 export default Booking;
