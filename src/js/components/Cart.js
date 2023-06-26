@@ -65,8 +65,9 @@ class Cart {
       const thisCart = this;
 
       // generate HTML based on temple 
-     
+      
       const generatedHTML = templates.cartProduct(menuProduct);
+      console.log(menuProduct)
       
       //create element using utils.createElementFromHtml 
 

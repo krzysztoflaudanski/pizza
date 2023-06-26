@@ -9,9 +9,8 @@ class Product {
       const thisProduct = this;
 
       thisProduct.id = id;
-      //console.log(id)
+     
       thisProduct.data = data;
-      //console.log(data)
 
       thisProduct.renderInMenu();
 
@@ -40,10 +39,11 @@ class Product {
       // find menu container 
 
       const menuContainer = document.querySelector(select.containerOf.menu);
-
+      
       // add element to menu 
 
       menuContainer.appendChild(thisProduct.element);
+      //console.log(thisProduct.element)
 
     }
 
