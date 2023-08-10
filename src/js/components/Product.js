@@ -1,6 +1,7 @@
 import { select, classNames, templates } from './../setting.js';
 import utils from './../utils.js';
 import AmountWidget from './AmountWidget.js';
+//import { settings } from './../setting.js';
 
 class Product {
   constructor(id, data) {
@@ -63,7 +64,9 @@ class Product {
     thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
 
     thisProduct.amountWidgetElem.addEventListener('updated', function () {
+
       thisProduct.processOrder();
+  
     });
 
 
@@ -205,8 +208,9 @@ class Product {
     const thisProduct = this;
 
     thisProduct.name = thisProduct.data.name;
+    
     thisProduct.amount = thisProduct.amountWidget.value;
-
+    console.log(thisProduct.amount)
     //app.Cart.add(thisProduct.prepareCartProduct());
 
     const event = new CustomEvent('add-to-cart', {
