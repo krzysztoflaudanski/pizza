@@ -12,8 +12,7 @@ class AmountWidget extends BaseWidget {
     //thisWidget.renderValue();
 
     //thisWidget.value = settings.amountWidget.defaultValue;
-    console.log(thisWidget.value)
-
+    
     thisWidget.initActions();
   }
 

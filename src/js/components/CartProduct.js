@@ -13,9 +13,6 @@ class CartProduct {
     thisCartProduct.priceSingle = menuProduct.priceSingle;
     thisCartProduct.amount = menuProduct.amount;
     
-    
-    console.log(thisCartProduct.amount)
-
     thisCartProduct.getElements(element);
     
     thisCartProduct.initAmountWidget();

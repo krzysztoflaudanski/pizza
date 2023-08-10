@@ -42,7 +42,6 @@ utils.convertDataSourceToDbJson = function () {
     productJson.push(Object.assign({ id: key }, dataSource.products[key]));
   }
 
-  console.log(JSON.stringify({ product: productJson, order: [] }, null, '  '));
 };
 
 utils.queryParams = function (params) {

@@ -145,7 +145,6 @@ class Product {
       // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
 
       const param = thisProduct.data.params[paramId];
-      //console.log(param);
 
       // for every option in this category
 
@@ -154,7 +153,6 @@ class Product {
         // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
 
         const option = param.options[optionId];
-        //console.log(option)
 
         // check if there is param with a name of paramId in formData and if it includes optionId
 
@@ -181,7 +179,6 @@ class Product {
           }
         }
         const optionImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
-        //console.log(optionImage);
 
         if (optionImage) {
 
@@ -210,7 +207,7 @@ class Product {
     thisProduct.name = thisProduct.data.name;
     
     thisProduct.amount = thisProduct.amountWidget.value;
-    console.log(thisProduct.amount)
+
     //app.Cart.add(thisProduct.prepareCartProduct());
 
     const event = new CustomEvent('add-to-cart', {
